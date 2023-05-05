@@ -36,6 +36,9 @@
         $('#exampleQuery').click(function() {
             $('#input_text').val('A website for a horse riding company in Roybon, France');
         });
+        $('#exampleQuery').click(function() {
+            $('#input_text').val("Le site internet de l'office du tourisme de Roybon, France");
+        });
         });
     </script>
       
@@ -70,9 +73,10 @@
           <label for="input_text" class="form-label">Enter text to generate HTML content and images with AI:</label>
           <textarea name="input_text" id="input_text" class="form-control" rows="5" required></textarea>
           <br>
-          <span>Example:</span>
+          <span>Examples:</span>
           <br>
           <button type="button" class="btn btn-light ml-2" id="exampleQuery">A website for a horse riding company in Roybon, France</button>
+          <button type="button" class="btn btn-light ml-2" id="exampleQuery2">Le site internet de l'office du tourisme de Roybon, France</button>
           <br>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
