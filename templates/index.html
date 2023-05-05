@@ -17,11 +17,11 @@
               method: "POST",
               data: $(this).serialize(),
               success: function (response) {
-                if (response.status === "success") {
-                    $("#loading-message").html("HTML content generated and pushed to GitHub successfully!<br>The content has been deployed on Vercel. <br><br>GitHub Repository: <a href='https://github.com/Louvivien/test' target='_blank'>https://github.com/Louvivien/test</a> <br>Vercel URL: <a href='https://test-louvivien.vercel.app/' target='_blank'>https://test-louvivien.vercel.app/</a>");
-                } else {
-                  $("#loading-message").html("An error occurred. Please try again.");
-                }
+                  if (response.status === "success") {
+                      $("#loading-message").html(response.message);
+                  } else {
+                      $("#loading-message").html(response.message);
+                  }
               },
               error: function () {
                 $("#loading-message").html("An error occurred. Please try again.");
