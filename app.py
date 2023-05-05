@@ -30,5 +30,5 @@ def index():
 def success():
     return "HTML content generated and pushed to GitHub successfully! "
 
-if __name__ == "__main__":
-    app.run(debug=True)
+# if __name__ == "__main__":
+#     app.run(debug=True)
