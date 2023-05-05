@@ -53,7 +53,8 @@ You can deploy this app on Render:
 
 - WEB SERVICE
 - Build Command: pip install --upgrade pip && pip install -r requirements.txt
-- Start Command: flask run
+- Start Command: gunicorn app:app
+
 
 Make sure to update the env variables
 
