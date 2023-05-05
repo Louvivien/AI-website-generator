@@ -82,5 +82,6 @@ def generate_image(style, alt, img_src, STABLEHORDE_API_KEY, local_directory):
     # Download the image
     local_image_path = f"{local_directory}/{img_src.split('/')[-1].split('.')[0]}.webp"
     urllib.request.urlretrieve(image_url, local_image_path)
+    print("Image generated:", local_image_path)
 
     return local_image_path
