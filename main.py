@@ -16,6 +16,10 @@ load_dotenv()
 GITHUB_ACCESS_TOKEN = os.environ["GITHUB_ACCESS_TOKEN"]
 REPO_NAME = os.environ["GITHUB_REPO_NAME"]
 
+# Set GitHub access token and repository name
+GIT_USER_EMAIL = os.environ["GIT_USER_EMAIL"]
+GIT_USER_NAME = os.environ["GIT_USER_NAME"]
+
 # Set OpenAI API key
 openai.api_key = os.environ["OPENAI_API_KEY"]
 
@@ -59,6 +63,10 @@ def make_changes_and_push(input_text):
         else:
             subprocess.run(
                 f"git clone {repo.git_url.replace('git://', f'https://{GITHUB_ACCESS_TOKEN}@')} {local_directory}", shell=True)
+            
+        subprocess.run(f"git -C {local_directory} config user.email {GIT_USER_EMAIL}", shell=True)
+        subprocess.run(f"git -C {local_directory} config user.name {GIT_USER_NAME}", shell=True)
+   
 
         # Add, commit, and push the changes
         with open(os.path.join(local_directory, "index.html"), "w") as f:
