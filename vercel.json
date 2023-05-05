@@ -5,12 +5,11 @@
     "builds": [
       { "src": "/app.py", "use": "@vercel/python" }
     ],
-    "functions": [
-      {
-        "name": "generate",
+    "functions": {
+      "generate": {
         "memory": 512,
         "duration": 180
       }
-    ]
+    }
   }
   
