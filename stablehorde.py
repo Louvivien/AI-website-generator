@@ -33,7 +33,7 @@ def generate_image(style, alt, img_src, STABLEHORDE_API_KEY, local_directory):
         "apikey": STABLEHORDE_API_KEY,
     }
     body = {
-        "prompt": alt,
+        "prompt": alt+"### poorly drawn face, cloned face, poorly drawn animal, disfigured, mutilated, ugly",
         "censor_nsfw": False,
         "failed": False,
         "gathered": False,
@@ -45,6 +45,7 @@ def generate_image(style, alt, img_src, STABLEHORDE_API_KEY, local_directory):
             "steps": 30,
             "n": 1,
             "sampler_name": "k_euler",
+            "post_processing": ['GFPGAN'],
             "width": width_adjusted,
             "height": height_adjusted,
             "cfg_scale": 7,
