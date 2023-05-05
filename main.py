@@ -68,5 +68,5 @@ def make_changes_and_push(input_text):
 #     input_text = input("Enter text to generate HTML content: ")
 
 #     # Make changes and push to GitHub
-#     make_changes_and_push(repo, local_directory, commit_message, input_text)
+#     make_changes_and_push(input_text)
 
