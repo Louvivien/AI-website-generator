@@ -27,6 +27,6 @@ requests==2.30.0
 soupsieve==2.4.1
 tqdm==4.65.0
 urllib3==2.0.2
-Werkzeug==2.3.3
+Werkzeug>=2.2.3
 wrapt==1.15.0
 yarl==1.9.2
