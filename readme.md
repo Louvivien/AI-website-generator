@@ -59,6 +59,8 @@ Make sure to update the env variables
 
 
 ## To do
-Remove the images files from the folder
+
+- Save images in /image folder
+- Remove this folder everytime
 
 
