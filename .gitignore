@@ -73,6 +73,10 @@ typings/
 *.env.production
 *.env.development
 
+# virtual env
+.venv/
+
+
 
 
 # parcel-bundler cache (https://parceljs.org/)
