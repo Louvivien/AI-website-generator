@@ -49,10 +49,13 @@ flask run
 
 ## Deployement
 
-You can deploy this app on Render
+You can deploy this app on Render:
+
+- WEB SERVICE
+- Build Command: pip install --upgrade pip && pip install -r requirements.txt
+- Start Command: flask run
 
 Make sure to update the env variables
-
 
 
 ## To do
