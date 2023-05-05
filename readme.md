@@ -51,10 +51,9 @@ flask run
 
 You can deploy this app on Render:
 
-- WEB SERVICE
+- Web Service
 - Build Command: pip install --upgrade pip && pip install -r requirements.txt
-- Start Command: gunicorn app:app
-
+- Start Command: gunicorn app:app --timeout 180
 
 Make sure to update the env variables
 
