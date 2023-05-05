@@ -1,13 +1,12 @@
 {
-    "builds": [
-      {
-        "src": "app.py",
-        "use": "@vercel/python",
-        "config": {
-          "maxLambdaSize": "15mb"
-        },
-        "timeout": 180
+    "routes": [
+      { "src": "/(.*)", "dest": "/app.py" }
+    ],
+    "functions": {
+      "generate": {
+        "memory": 512,
+        "maxDuration": 180
       }
-    ]
+    }
   }
   
