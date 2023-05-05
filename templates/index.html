@@ -7,9 +7,10 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $(document).ready(function () {
-          $("#generate-form").on("submit", function (e) {
-            e.preventDefault(); // Prevent the form from refreshing the page
-            $("#loading-message").show();
+            $("#generate-form").on("submit", function (e) {
+                e.preventDefault(); 
+                $("#loading-message").html('<p>Please wait while the HTML content is being generated and pushed to GitHub...</p><div class="spinner-border text-primary" role="status"><span class="visually-hidden">Loading...</span></div>');
+                $("#loading-message").show();
       
             $.ajax({
               url: "/generate",
