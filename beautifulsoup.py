@@ -7,9 +7,9 @@ def generate_images(html_content, STABLEHORDE_API_KEY, local_directory):
     image_elements = soup.find_all("img")
 
     for image_element in image_elements:
-        style = image_element["style"]
-        alt = image_element["alt"]
+        alt = image_element.get("alt")
         img_src = image_element["src"]
+        style = image_element.get("style", None) 
         image_path = generate_image(style, alt, img_src, STABLEHORDE_API_KEY, local_directory)
         image_name = image_path.split("/")[-1]
         image_element["src"] = image_name
