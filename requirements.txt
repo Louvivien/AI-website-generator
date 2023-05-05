@@ -22,7 +22,7 @@ pycparser==2.21
 PyGithub==1.58.1
 PyJWT==2.6.0
 PyNaCl==1.5.0
-python-dotenv==1.0.0
+python-dotenv>=0.21.1
 requests==2.30.0
 soupsieve==2.4.1
 tqdm==4.65.0
