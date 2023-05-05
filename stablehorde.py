@@ -20,8 +20,8 @@ def generate_image(style, alt, img_src, STABLEHORDE_API_KEY, local_directory):
         height_adjusted = 64 * math.ceil(height / 64)
     else:
         # Default values if width and height are not found in the style string
-        width_adjusted = 400
-        height_adjusted = 300
+        width_adjusted = 64 * math.ceil(400 / 64)
+        height_adjusted =  64 * math.ceil(300 / 64)
         print("ChatGPT did not generate style requirements'")
 
 
