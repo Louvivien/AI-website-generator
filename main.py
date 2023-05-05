@@ -1,19 +1,11 @@
 from dotenv import load_dotenv
 import os
 import subprocess
-import re
 import openai
-from time import sleep
-from urllib import request
-import math
 from github_utils import get_repo
 from openai_utils import generate_html
-from stablehorde import generate_image
 from beautifulsoup import generate_images
 
-
-# Load environment variables from .env file
-load_dotenv()
 
 # Load environment variables from .env file
 load_dotenv()
@@ -34,7 +26,15 @@ prompt_template = "I want you to create HTML code based on the input text: {}. R
 
 
 
-def make_changes_and_push(repo, local_directory, commit_message, input_text):
+def make_changes_and_push(input_text):
+    # Set up local directory
+    script_directory = os.path.dirname(os.path.abspath(__file__))
+
+    # Set up repository and commit message
+    repo = get_repo(GITHUB_ACCESS_TOKEN, REPO_NAME)
+    commit_message = f"Add HTML file based on input text: {input_text}"
+    local_directory = os.path.join(script_directory, "cloned_repo")
+
     # Generate HTML content using OpenAI API
     prompt = prompt_template.format(input_text)
     html_content = generate_html(prompt)
@@ -66,14 +66,6 @@ def make_changes_and_push(repo, local_directory, commit_message, input_text):
 
 #     # Get input from user
 #     input_text = input("Enter text to generate HTML content: ")
-
-#     # Set up repository and commit message
-#     repo = get_repo(GITHUB_ACCESS_TOKEN, REPO_NAME)
-#     commit_message = f"Add HTML file based on input text: {input_text}"
-
-#     # Set up local directory
-#     script_directory = os.path.dirname(os.path.abspath(__file__))
-#     local_directory = os.path.join(script_directory, "cloned_repo")
 
 #     # Make changes and push to GitHub
 #     make_changes_and_push(repo, local_directory, commit_message, input_text)
