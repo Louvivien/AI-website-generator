@@ -21,9 +21,9 @@ def generate():
     start_time = time.time()
     print('Average processing time:', processing_times)
     input_text = request.form['input_text']
-    style = request.form['style']
+    # style = request.form['style']
     try:
-        make_changes_and_push(input_text, style)
+        make_changes_and_push(input_text, style='Bootstrap')
         processing_time = time.time() - start_time
         print('Processing time:', processing_time)
         processing_times.append(processing_time)
@@ -37,8 +37,8 @@ def generate():
 def index():
     if request.method == "POST":
         input_text = request.form["input_text"]
-        style = request.form['style']
-        make_changes_and_push(input_text, style)
+        # style = request.form['style']
+        make_changes_and_push(input_text, style='Bootstrap')
         return redirect(url_for("success"))
     avg_time = calculate_average_time()
     return render_template("index.html", avg_time=avg_time)
