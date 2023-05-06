@@ -8,22 +8,27 @@ import urllib.request
 
 
 def generate_image(style, alt, img_src, STABLEHORDE_API_KEY, local_directory):
-    # Extract width and height from the style string
-    width_search = re.search('width: (\d+)px', style)
-    height_search = re.search('height: (\d+)px', style)
-
-    if width_search and height_search:
-        width = int(width_search.group(1))
-        height = int(height_search.group(1))
-        # Adjust width and height to the nearest multiple of 64
-        width_adjusted = 64 * math.ceil(width / 64)
-        height_adjusted = 64 * math.ceil(height / 64)
-    else:
-        # Default values if width and height are not found in the style string
+    if style is None:
+        # Default values if style is not provided
         width_adjusted = 64 * math.ceil(400 / 64)
         height_adjusted =  64 * math.ceil(300 / 64)
-        print("ChatGPT did not generate style requirements")
+        print("Style not provided, using default width and height values")
+    else:
+        # Extract width and height from the style string
+        width_search = re.search('width: (\d+)px', style)
+        height_search = re.search('height: (\d+)px', style)
 
+        if width_search and height_search:
+            width = int(width_search.group(1))
+            height = int(height_search.group(1))
+            # Adjust width and height to the nearest multiple of 64
+            width_adjusted = 64 * math.ceil(width / 64)
+            height_adjusted = 64 * math.ceil(height / 64)
+        else:
+            # Default values if width and height are not found in the style string
+            width_adjusted = 64 * math.ceil(400 / 64)
+            height_adjusted =  64 * math.ceil(300 / 64)
+            print("ChatGPT did not generate style requirements")
 
 
     # Make a POST request to the Stablehorde API to generate an image
@@ -81,7 +86,7 @@ def generate_image(style, alt, img_src, STABLEHORDE_API_KEY, local_directory):
             sleep(1)  # To avoid overwhelming the API with requests
 
     # Download the image
-    local_image_path = f"{local_directory}/{img_src.split('/')[-1].split('.')[0]}.webp"
+    local_image_path = f"{local_directory}/images/{img_src.split('/')[-1].split('.')[0]}.webp"
     urllib.request.urlretrieve(image_url, local_image_path)
     print("Image generated:", local_image_path)
 

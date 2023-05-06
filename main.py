@@ -6,6 +6,8 @@ from github_utils import get_repo
 from openai_utils import generate_html
 from beautifulsoup import generate_images
 import tempfile
+import shutil
+
 
 
 
@@ -29,10 +31,15 @@ STABLEHORDE_API_KEY = os.environ["STABLEHORDE_API_KEY"]
 # Set prompt for OpenAI API
 prompt_template = "I want you to create HTML code based on the input text: {}. Reply only with HTML code no other comments. Please include CSS for the page. For the images, the <img> tags must include at least two attributes: a style attribute with at least the heigh and width in pixel and a custom alt text attribute different for each image and with at least 100 words to describe the image."
 
+def clean_image_directory(local_directory):
+    images_path = os.path.join(local_directory, "images")
+    if os.path.exists(images_path):
+        shutil.rmtree(images_path)
+    os.makedirs(images_path)
 
 def make_changes_and_push(input_text):
-    # Set up local directory
-    script_directory = os.path.dirname(os.path.abspath(__file__))
+    # # Set up local directory
+    # script_directory = os.path.dirname(os.path.abspath(__file__))
 
     # Set up repository and commit message
     repo = get_repo(GITHUB_ACCESS_TOKEN, REPO_NAME)
@@ -44,11 +51,14 @@ def make_changes_and_push(input_text):
 
         # Clone the repository to the local_directory
         subprocess.run(
-            f"git clone {repo.git_url.replace('git://', f'https://{GITHUB_ACCESS_TOKEN}@')} {local_directory}", shell=True)
+            f"git clone --depth 1 {repo.git_url.replace('git://', f'https://{GITHUB_ACCESS_TOKEN}@')} {local_directory}", shell=True)
 
         # Generate HTML content using OpenAI API
         prompt = prompt_template.format(input_text)
         html_content = generate_html(prompt)
+
+        # Clean the images directory before generating new images
+        clean_image_directory(local_directory)
 
         # Generate images using Stablehorde API
         html_content = generate_images(html_content, STABLEHORDE_API_KEY, local_directory)
@@ -62,7 +72,7 @@ def make_changes_and_push(input_text):
             subprocess.run(f"git -C {local_directory} pull", shell=True)
         else:
             subprocess.run(
-                f"git clone {repo.git_url.replace('git://', f'https://{GITHUB_ACCESS_TOKEN}@')} {local_directory}", shell=True)
+                f"git clone --depth 1 {repo.git_url.replace('git://', f'https://{GITHUB_ACCESS_TOKEN}@')} {local_directory}", shell=True)
             
         subprocess.run(f"git -C {local_directory} config user.email {GIT_USER_EMAIL}", shell=True)
         subprocess.run(f"git -C {local_directory} config user.name {GIT_USER_NAME}", shell=True)

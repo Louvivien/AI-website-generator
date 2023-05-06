@@ -12,5 +12,5 @@ def generate_images(html_content, STABLEHORDE_API_KEY, local_directory):
         style = image_element.get("style", None) 
         image_path = generate_image(style, alt, img_src, STABLEHORDE_API_KEY, local_directory)
         image_name = image_path.split("/")[-1]
-        image_element["src"] = image_name
+        image_element["src"] = f"./images/{image_name}"
     return str(soup)
