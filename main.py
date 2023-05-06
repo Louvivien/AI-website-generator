@@ -7,7 +7,7 @@ from openai_utils import generate_html
 from beautifulsoup import generate_images
 import tempfile
 import shutil
-
+import datetime
 
 
 
@@ -29,7 +29,33 @@ openai.api_key = os.environ["OPENAI_API_KEY"]
 STABLEHORDE_API_KEY = os.environ["STABLEHORDE_API_KEY"]
 
 # Set prompt for OpenAI API
-prompt_template = "I want you to create HTML code based on the input text: {}. Reply only with HTML code no other comments. Please include CSS for the page. For the images, the <img> tags must include at least two attributes: a style attribute with at least the heigh and width in pixel and a custom alt text attribute different for each image and with at least 100 words to describe the image."
+current_year = datetime.datetime.now().year
+
+prompt_template = (
+    f"Using {{style}}, I want you to create a one page website based on the input text: '{{input_text}}'." 
+    f"Reply only with HTML code no other comments. Please include CSS for the page." 
+    f"You can use complex UI components from {{style}}" 
+    f"For the images, the <img> tags must include at least two attributes: a style attribute with at least the heigh and width in pixel and a custom alt text attribute different for each image and with at least 100 words to describe the image. The image names must be descriptive."
+    f"There must be at least 2 paragraphs of text on the page."
+    f"At the bottom of the website include the current year ({current_year}) and social network links" 
+)
+                   
+# Too heavy
+# prompt_template = (
+#     f"Using {{style}}, I want you to create a one page website based on the input text: '{{input_text}}'."
+#     f"Reply only with HTML code no other comments. Please include complex components if possible and CSS using a stylish color palette."
+#     f"Each section must have a background color." 
+#     f"There must be a header section" 
+#     f"Always include a beautiful banner with a heading phrase and some text under it." 
+#     f"For the images, they must be different and the <img> tags must include at least two attributes: a style attribute with at least the heigh and width in pixel and a custom alt text attribute different for each image and with at least 100 words to describe the image."
+#     f"There can be a section about services, products or portfolio with beautiful pictures"
+#     f"There can be testimonials that can be display in a carrousel. They can include little picture of the customers."
+#     f"There can be an about us section"
+#     f"There can be a location section that can include a map or an openstreet map background"
+#     f"At the bottom of the website include the current year ({current_year}) and social network links" 
+
+# )
+
 
 def clean_image_directory(local_directory):
     images_path = os.path.join(local_directory, "images")
@@ -37,7 +63,7 @@ def clean_image_directory(local_directory):
         shutil.rmtree(images_path)
     os.makedirs(images_path)
 
-def make_changes_and_push(input_text):
+def make_changes_and_push(input_text, style):
     # # Set up local directory
     # script_directory = os.path.dirname(os.path.abspath(__file__))
 
@@ -54,7 +80,7 @@ def make_changes_and_push(input_text):
             f"git clone --depth 1 {repo.git_url.replace('git://', f'https://{GITHUB_ACCESS_TOKEN}@')} {local_directory}", shell=True)
 
         # Generate HTML content using OpenAI API
-        prompt = prompt_template.format(input_text)
+        prompt = prompt_template.format(input_text=input_text, style=style)
         html_content = generate_html(prompt)
 
         # Clean the images directory before generating new images
