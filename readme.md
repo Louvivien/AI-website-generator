@@ -60,7 +60,6 @@ Make sure to update the env variables
 
 ## To do
 
-- Save images in /image folder
-- Remove this folder everytime
+- Fix pb on mobile
 
 
