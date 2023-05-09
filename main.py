@@ -91,10 +91,10 @@ def make_changes_and_push(input_text, style):
 
         # Add the script to the HTML content
         script_tag = '''<script 
-                            id="clhac43dd0002q0vl8ue830mv"
-                            data-name="databerry-chat-bubble"
-                            src="https://databerry-one.vercel.app/js/chat-bubble.js"
-                            ></script>'''
+                        id="91060409-3f3c-420f-ad3f-ed3bfcc72fa3"
+                        data-name="flowise-chat-bubble"
+                        src="https://ai-api-jzxv.onrender.com/js/chat-bubble.js"
+                        ></script>'''
         html_content = html_content.replace("</body>", f"{script_tag}</body>")
 
         # Clone or pull the repository
