@@ -91,7 +91,7 @@ def make_changes_and_push(input_text, style):
 
         # Add the script to the HTML content
         script_tag = '''<script 
-                        id="91060409-3f3c-420f-ad3f-ed3bfcc72fa3"
+                        id="9a7d628e-229f-4ea0-b3e0-916f3524e3df"
                         data-name="flowise-chat-bubble"
                         src="https://ai-api-jzxv.onrender.com/js/chat-bubble.js"
                         ></script>'''
