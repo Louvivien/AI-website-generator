@@ -93,7 +93,7 @@ def make_changes_and_push(input_text, style):
         script_tag = '''<script 
                             id="clhac43dd0002q0vl8ue830mv"
                             data-name="databerry-chat-bubble"
-                            src="https://cdn.jsdelivr.net/npm/@databerry/chat-bubble@latest"
+                            src="https://databerry-one.vercel.app/js/chat-bubble.js"
                             ></script>'''
         html_content = html_content.replace("</body>", f"{script_tag}</body>")
 
