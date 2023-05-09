@@ -91,10 +91,10 @@ def make_changes_and_push(input_text, style):
 
         # Add the script to the HTML content
         script_tag = '''<script 
-                        id="clh7ew6vj0000e9oga0of8r5p"
-                        data-name="databerry-chat-bubble"
-                        src="https://cdn.jsdelivr.net/npm/@databerry/chat-bubble@latest"
-                        ></script>'''
+                            id="clhac43dd0002q0vl8ue830mv"
+                            data-name="databerry-chat-bubble"
+                            src="https://cdn.jsdelivr.net/npm/@databerry/chat-bubble@latest"
+                            ></script>'''
         html_content = html_content.replace("</body>", f"{script_tag}</body>")
 
         # Clone or pull the repository
