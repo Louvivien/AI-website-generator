@@ -91,9 +91,9 @@ def make_changes_and_push(input_text, style):
 
         # Add the script to the HTML content
         script_tag = '''<script 
-                        id="9a7d628e-229f-4ea0-b3e0-916f3524e3df"
-                        data-name="flowise-chat-bubble"
-                        src="https://ai-api-jzxv.onrender.com/js/chat-bubble.js"
+                        id="clhac43dd0002q0vl8ue830mv"
+                        data-name="databerry-chat-bubble"
+                        src="https://databerry-one.vercel.app/js/chat-bubble.js"
                         ></script>'''
         html_content = html_content.replace("</body>", f"{script_tag}</body>")
 
